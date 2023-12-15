@@ -11,7 +11,7 @@ class Crypto:
     def symbols(self):
         symbols = []
         for index, row in pd.read_csv(
-            'crypto/crypto-symbols.csv',
+            'crypto/symbols.csv',
             header=None
         ).iterrows():
             symbols.append(row[0])
@@ -34,20 +34,23 @@ class Crypto:
         return frame
 
     def get_symbol(self, symbol):
+        print('Getting {}...'.format(symbol))
+
         frame = self.get_minute_data(symbol, '80 days ago UTC')
         frame.to_sql(symbol, self.engine)
 
         return frame
 
     def get_symbols(self, symbols=pd.read_csv(
-        'crypto/crypto-symbols.csv',
+        'crypto/symbols.csv',
         header=None
     )):
         responses = []
+        rows = symbols.iterrows()
 
-        for index, row in symbols.iterrows():
+        for index, row in rows:
             symbol = row[0]
-            responses.push(self.get_symbol(symbol))
+            responses.append(self.get_symbol(symbol))
 
         return responses
 
@@ -59,6 +62,6 @@ class Crypto:
 
     def get_symbol_in_db(self, symbol):
         return pd.read_sql(
-            """SELECT * FROM {}""".format(symbol),
+            """SELECT * FROM '{}'""".format(symbol),
             self.engine
         )

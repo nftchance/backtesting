@@ -19,3 +19,5 @@ class SmaCrossOver(Strategy):
             stop_loss = price - price * 0.03
             take_profit = price + price * 0.04
             self.buy(sl=stop_loss, tp=take_profit)
+        elif crossover(self.sma2, self.sma1):
+            self.sell()

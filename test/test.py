@@ -18,7 +18,7 @@ class Test:
             'Close': 'last'
         })
 
-    def backtest(self, interval='15min'):
+    def backtest(self, interval='15min', plot=False):
         returns = []
         for symbol in self.symbols.name:
             query = f"""
@@ -38,7 +38,8 @@ class Test:
                 exclusive_orders=True
             )
             output = backtest.run()
-            backtest.plot()
+            if plot:
+                backtest.plot()
             returns.append(output['Return [%]'])
 
         frame = pd.DataFrame(returns, index=self.symbols.name, columns=['ret'])

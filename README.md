@@ -6,8 +6,8 @@
 This repository provides a base template to do backtesting on Equities and Cryptocurrencies.
 
 ```ml
-Yahoo - 'Provider for equity prices.'
-Binance - 'Provider for crypto prices.'
+├─ Yahoo - "Provider for equity prices."
+└─ Binance - "Provider for crypto prices."
 ```
 
 ## Installation
@@ -18,6 +18,18 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Database
+## Usage
 
 All data is stored in a local SQLite database. I recommend using a tool such as [TablePlus](https://tableplus.com/) anytime you would like to interact with the database outside of the Python environment.
+
+If your database has no data or is not up to date with all the symbols, run:
+
+```bash
+python pull.py
+```
+
+With your database populated, you are now ready to run the tests that power the indicators and strategies. You can do so by returning to your terminal and running:
+
+```bash
+python test.py
+```
