@@ -8,9 +8,8 @@ if __name__ == '__main__':
     symbols = crypto.get_symbols_in_db()
 
     if len(symbols) == 0:
-        raise Exception("""No symbols in database. Do one of the below:
-        1.) Run `python pull.py` to populate database.
-        2.) Run `git pull` to get the latest public database.
+        raise Exception("""
+            No symbols in database. Run `python pull.py` to populate database.
         """)
 
     test = Test(symbols, crypto.engine, SmaCrossOver)

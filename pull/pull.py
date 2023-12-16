@@ -6,6 +6,7 @@ class Puller:
         self.symbols_csv = symbols_csv
 
     def get_symbol(self, symbol):
+        symbol = str(symbol)
         has_symbol = self.database.has_symbol(symbol)
 
         if has_symbol:
