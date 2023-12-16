@@ -18,7 +18,7 @@ class Crypto:
 
         return symbols
 
-    def get_minute_data(self, symbol, start):
+    def get_minute_data(self, symbol, start='30 days ago UTC'):
         frame = pd.DataFrame(
             self.client.get_historical_klines(
                 symbol,
@@ -26,6 +26,10 @@ class Crypto:
                 start
             )
         )
+
+        if len(frame) == 0:
+            return None
+
         frame = frame[[0, 1, 2, 3, 4]]
         frame.columns = ['Date', 'Open', 'High', 'Low', 'Close']
         frame.Date = pd.to_datetime(frame.Date, unit='ms')
@@ -36,7 +40,11 @@ class Crypto:
     def get_symbol(self, symbol):
         print('Getting {}...'.format(symbol))
 
-        frame = self.get_minute_data(symbol, '80 days ago UTC')
+        frame = self.get_minute_data(symbol)
+
+        if frame is None:
+            return None
+
         frame.to_sql(symbol, self.engine)
 
         return frame
