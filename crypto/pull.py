@@ -4,9 +4,9 @@ from binance import Client
 
 
 class Crypto:
-    def __init__(self):
+    def __init__(self, database):
         self.client = Client()
-        self.engine = create_engine('sqlite:///1_minute.db')
+        self.engine = create_engine(database)
 
     def symbols(self):
         symbols = []

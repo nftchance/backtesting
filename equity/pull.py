@@ -35,12 +35,17 @@ class Equity:
         frames = []
 
         while cursor < end:
-            frames.append(pdr.get_data_yahoo(
+            data = pdr.get_data_yahoo(
                 symbol,
                 start=start,
                 end=cursor,
                 interval='1m'
-            ))
+            )
+
+            if data.empty:
+                cursor = end
+
+            frames.append(data)
             cursor += datetime.timedelta(days=7)
             cursor = end if cursor > end else cursor
             start += datetime.timedelta(days=7)
