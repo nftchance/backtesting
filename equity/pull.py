@@ -42,4 +42,8 @@ class Equity(Puller):
             cursor = end if cursor > end else cursor
             start += datetime.timedelta(days=7)
 
+        if len(frames) == 0 or all(frame.empty for frame in frames):
+            self.remove_symbol(symbol)
+            return pd.DataFrame()
+
         return pd.concat(frames)

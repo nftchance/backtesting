@@ -11,15 +11,16 @@ class Crypto(Puller):
         self.symbols_csv = symbols_csv
 
     def get_minute_data(self, symbol, start='30 days ago UTC'):
-        frame = pd.DataFrame(
-            self.client.get_historical_klines(
-                symbol,
-                Client.KLINE_INTERVAL_1MINUTE,
-                start
-            )
+        data = self.client.get_historical_klines(
+            symbol,
+            Client.KLINE_INTERVAL_1MINUTE,
+            start
         )
 
-        if len(frame) == 0:
+        frame = pd.DataFrame(data)
+
+        if len(frame) == 0 or frame.empty:
+            self.remove_symbol(symbol)
             return None
 
         frame = frame[[0, 1, 2, 3, 4]]

@@ -6,17 +6,14 @@ class Puller:
         self.symbols_csv = symbols_csv
 
     def get_symbol(self, symbol):
-        print('Getting {}...'.format(symbol))
+        # print('Getting {}...'.format(symbol))
 
         has_symbol = self.database.has_symbol(symbol)
 
         if has_symbol:
             return self.database.get_symbol(symbol)
 
-        try:
-            frame = self.get_minute_data(symbol)
-        except Exception:
-            frame = None
+        frame = self.get_minute_data(symbol)
 
         if frame.empty or frame is None:
             return None
@@ -40,3 +37,19 @@ class Puller:
             responses.append(symbol)
 
         return responses
+
+    def remove_symbol(self, symbol):
+        symbols = pd.read_csv(
+            self.symbols_csv,
+            header=None
+        )
+
+        symbols = symbols[symbols[0] != symbol]
+
+        symbols.to_csv(
+            self.symbols_csv,
+            header=None,
+            index=False
+        )
+
+        return pd.DateFrame()
