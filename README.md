@@ -25,7 +25,7 @@ All data is stored in a local SQLite database. I recommend using a tool such as 
 If you would like to make sure that you are using the latest set of tickers/symbols, run:
 
 ```bash
-python symbol.py
+python symbols.py
 ```
 
 If your database has no data or is not up to date with all the symbols, run:
