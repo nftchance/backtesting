@@ -3,7 +3,7 @@
 > [!TIP]
 > If you are a burger, the API used for crypto prices will fail. You may choose to use a VPN based somewhere that crypto laws are chill.
 
-This repository provides a base template to do backtesting on Equities and Cryptocurrencies.
+This repository provides a base template to do backtesting on Equities and Cryptocurrencies that will get you up and running in seconds. You do not need to do any configuration or retrieval of API keys.
 
 ```ml
 ├─ Yahoo - "Provider for equity prices."
