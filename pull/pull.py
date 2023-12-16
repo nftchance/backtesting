@@ -50,4 +50,4 @@ class Puller:
             index=False
         )
 
-        return pd.DateFrame()
+        return None
