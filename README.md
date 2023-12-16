@@ -28,6 +28,9 @@ If your database has no data or is not up to date with all the symbols, run:
 python pull.py
 ```
 
+> [!NOTE]
+> It will take several hours to sync the entire state of your database. It will be fine running a super long time and is setup to defend from unexpected errors. Just run the command and go do something else for the day.
+
 With your database populated, you are now ready to run the tests that power the indicators and strategies. You can do so by returning to your terminal and running:
 
 ```bash
