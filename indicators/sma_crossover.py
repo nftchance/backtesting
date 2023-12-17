@@ -1,10 +1,10 @@
-from backtesting import Strategy
 from backtesting.lib import crossover
-
 from backtesting.test import SMA
 
+from strategies.types.trailing_stop_loss import TrailingStrategy
 
-class SmaCrossOver(Strategy):
+
+class SmaCrossOver(TrailingStrategy):
     n1 = 10
     n2 = 20
 

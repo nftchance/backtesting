@@ -7,14 +7,13 @@ class Puller:
 
     def get_symbol(self, symbol):
         symbol = str(symbol)
-        has_symbol = self.database.has_symbol(symbol)
 
-        if has_symbol:
+        if self.database.has_symbol(symbol):
             return self.database.get_symbol(symbol)
 
         frame = self.get_minute_data(symbol)
 
-        if frame.empty or frame is None:
+        if frame is None or frame.empty or symbol == 'nan':
             return None
 
         frame.to_sql(symbol, self.database.engine)
